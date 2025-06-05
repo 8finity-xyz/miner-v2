@@ -22,6 +22,7 @@ async def main():
             reward_recipient=config.REWARDS_RECIPIENT_ADDRESS,
         )
 
+    miner.logger.info(f"Running in {'pool' if config.POOL_MODE else 'solo'} mode")
     await miner.mine()
 
 

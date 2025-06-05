@@ -13,7 +13,7 @@ class PoolMiner(BaseMiner):
         self.miner_address = miner_address
         self.pool_url = pool_url
 
-        self.current_problem = (0, 0)
+        self.current_problem = (None, None)
         self.problem_queue = asyncio.Queue()
         self._poll_problem_task = asyncio.create_task(self._poll_problem())
 
@@ -47,18 +47,23 @@ class PoolMiner(BaseMiner):
                 )
 
     async def flush_stats(self):
-        _, current_difficulty = self.current_problem
-        current_difficulty_str = current_difficulty.to_bytes(20, byteorder="big").hex()
-        leading_zeros = len(current_difficulty_str) - len(
-            current_difficulty_str.lstrip("0")
-        )
-
         self.logger.info("| STATS")
+
         if self.solver.get_speed() > 0:
             self.logger.info(f"├ hashrate: {self.solver.hashrate()}")
-        self.logger.info(
-            f"├ current difficulty: 0x{current_difficulty_str} ({leading_zeros} leading zeros)"
-        )
+
+        _, current_difficulty = self.current_problem
+        if current_difficulty is not None:
+            current_difficulty_str = current_difficulty.to_bytes(
+                20, byteorder="big"
+            ).hex()
+            leading_zeros = len(current_difficulty_str) - len(
+                current_difficulty_str.lstrip("0")
+            )
+            self.logger.info(
+                f"├ current difficulty: 0x{current_difficulty_str} ({leading_zeros} leading zeros)"
+            )
+
         if self.claim_info is not None:
             self.logger.info(
                 f"├ total finalized rewards: {self.claim_info['total_reward'] / 1e18} $8"

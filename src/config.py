@@ -12,7 +12,7 @@ import os
 
 import dotenv
 from eth_account import Account
-from eth_utils import is_same_address
+from eth_utils import is_same_address, is_address
 from web3 import Web3
 
 dotenv.load_dotenv()
@@ -90,10 +90,13 @@ def validate_pool_params():
         with urllib.request.urlopen(POOL_URL + "/healthcheck") as response:
             assert response.status == 200
     except Exception as e:
-        print(e)
         print(
             f"[ERROR]: Unable to establish a connection with INFINITY_POOL_URL ({POOL_URL})."
         )
+        exit(0)
+
+    if not is_address(REWARDS_RECIPIENT_ADDRESS):
+        print(f"[ERROR]: INFINITY_REWARDS_RECIPIENT_ADDRESS required for pool mode")
         exit(0)
 
 
