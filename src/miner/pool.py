@@ -38,7 +38,7 @@ class PoolMiner(BaseMiner):
             },
         ) as r:
             if r.status != 200:
-                self.logger.warning(f"Can't submit - status: {r.status}")
+                self.logger.debug(f"Can't submit - status: {r.status}")
                 self.logger.debug(f"/submit response - {await r.text()}")
                 return
 
