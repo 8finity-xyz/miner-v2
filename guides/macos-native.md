@@ -1,16 +1,21 @@
 # Mining on MacOs
 
 ## Prerequisites
-
 - Python 3.10 or higher
 - pip (Python package manager)
 
-## 1. **Install Dependencies**
+## 1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/8finity-xyz/miner-v2.git
+   cd miner-v2
+   ```
+
+## 2. **Install Dependencies**
    ```bash
    python3 -m pip install -r requirements.txt
    ```
 
-## 2. **Configure Environment**
+## 3. **Configure Environment**
    Create a `.env` file in the project root with one of the following configurations:
 
    ### Option 1: Solo Mining
@@ -45,7 +50,7 @@
    # LOGLEVEL=DEBUG
    ```
 
-## 3. **Run the Miner**
+## 4. **Run the Miner**
    ```bash
    python3 src/main.py
    ```

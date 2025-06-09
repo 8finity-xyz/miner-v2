@@ -4,9 +4,16 @@
 - Linux machine with NVIDIA GPU
 - Docker - [how to install](https://docs.docker.com/engine/install/)
 - NVIDIA Container Toolkit - [how to install](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+- Python 3.10 or higher
+- pip (Python package manager)
 
+## 1. **Clone the Repository**
+```bash
+git clone https://github.com/8finity-xyz/miner-v2.git
+cd miner-v2
+```
 
-## 1. **Configure Environment**
+## 2. **Configure Environment**
 Create a `.env` file with one of the following configurations:
 
 ### Option 1: Solo Mining
@@ -48,8 +55,6 @@ docker run --gpus all --env-file .env 8finity/miner-v2
 
 ## 3. **Optional: build docker container from code**
 ```
-git clone https://github.com/8finity-xyz/miner-v2.git
-cd miner-v2
 docker build -t miner-v2 .
 docker run --gpus all --env-file .env miner-v2
 ```
