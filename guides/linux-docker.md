@@ -6,7 +6,7 @@
 - NVIDIA Container Toolkit - [how to install](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 
-1. **Configure Environment**
+## 1. **Configure Environment**
 Create a `.env` file with one of the following configurations:
 
 ### Option 1: Solo Mining
@@ -41,12 +41,12 @@ INFINITY_REWARDS_RECIPIENT_ADDRESS=your_address_here
 # LOGLEVEL=DEBUG
 ```
 
-2. **Run docker container**
+## 2. **Run docker container**
 ```
 docker run --gpus all --env-file .env 8finity/miner-v2
 ```
 
-3. **Optional: build docker container from code**
+## 3. **Optional: build docker container from code**
 ```
 git clone https://github.com/8finity-xyz/miner-v2.git
 cd miner-v2
